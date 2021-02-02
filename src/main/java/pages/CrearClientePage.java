@@ -11,9 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 import static reports.ReportAllure.addStep;
 import static utils.Utils.esperarElemento;
 
-public class CrearCliente {
+public class CrearClientePage {
     private AppiumDriver driver;
-    public CrearCliente(){
+    public CrearClientePage(){
         this.driver = DriverContext.getDriver();
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }

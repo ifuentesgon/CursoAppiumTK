@@ -1,14 +1,14 @@
 package testsCases;
 
 import pages.CarruselPage;
-import pages.CrearCliente;
+import pages.CrearClientePage;
 import pages.RegistroPage;
 
 public class CPA_CrearCliente {
 
     CarruselPage carrusel = new CarruselPage();
     RegistroPage registro = new RegistroPage();
-    CrearCliente crearCliente = new CrearCliente();
+    CrearClientePage crearClientePage = new CrearClientePage();
 
     String nombre = "karen";
     String id = "12345";
@@ -21,9 +21,9 @@ public class CPA_CrearCliente {
         registro.validarListaDesplegada();
         registro.tapBtnMas();
         registro.tapBtnCrearCliente();
-        crearCliente.validarListaDesplegada();
-        crearCliente.completarFormulario(nombre, id, fono, direccion, notas);
-        crearCliente.tapGuardar();
+        crearClientePage.validarListaDesplegada();
+        crearClientePage.completarFormulario(nombre, id, fono, direccion, notas);
+        crearClientePage.tapGuardar();
         registro.validarCliente(nombre);
     }
 }
