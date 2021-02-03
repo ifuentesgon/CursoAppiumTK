@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import reports.ReportAllure;
+import testsCases.CPA_BorrarCliente;
 import testsCases.CPA_CrearCliente;
 
 import static driver.DriverContext.quitDriver;
@@ -39,6 +40,14 @@ public class allure {
     @Test
     public void CPA_CrearCliente(){
         CPA_CrearCliente cpa = new CPA_CrearCliente();
+        cpa.flujoFront();
+    }
+
+    //Desde aqui empiezan Casos Evaluación
+
+    @Test(priority = 2, description = "Caso Borrar Cliente")
+    public void CPA_BorrarCliente(){
+        CPA_BorrarCliente cpa = new CPA_BorrarCliente ();
         cpa.flujoFront();
     }
 

@@ -9,13 +9,29 @@ import org.openqa.selenium.support.PageFactory;
 
 public class DetalleClientePage {
     private AppiumDriver driver;
-    public CrearClientePage(){
+    public DetalleClientePage(){
         this.driver = DriverContext.getDriver();
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Crear Cliente')]")
-    private MobileElement tituloVistaCrearCliente;
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'Eliminar cliente')]")
+    private MobileElement btnEliminar;
+
+    @AndroidFindBy(id = "com.rodrigo.registro:id/editTextDialogUserInput")
+    private MobileElement inputBorrar;
+
+    @AndroidFindBy(id = "android:id/button1")
+    private MobileElement btnOk;
+
+    public void setConfirmarEliminacion(){
+
+
+    }
+
+
+    public void tapBtnEliminar(){
+        btnEliminar.click();
+    }
 
 
 }

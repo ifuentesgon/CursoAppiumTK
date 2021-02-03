@@ -28,13 +28,15 @@ public class Utils {
     }
 
     public static void swipeAbajo(){
-        int anchor = (int) (DriverContext.getDriver().manage().window().getSize().width *0.008D);
-        int startPoint = (int) (DriverContext.getDriver().manage().window().getSize().height *0.009D);
+        int anchor = (int) (DriverContext.getDriver().manage().window().getSize().width *0.08D);
+        int startPoint = (int) (DriverContext.getDriver().manage().window().getSize().height *0.9D);
         int endPoint = (int) (DriverContext.getDriver().manage().window().getSize().width *0.65D);
         TouchAction touchAction = new TouchAction(DriverContext.getDriver());
         touchAction.press(PointOption.point(anchor,startPoint)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(500L))).moveTo(PointOption.point(anchor,endPoint)).release().perform();
         System.out.println("Se hace swipe abajo");
 
     }
+
+
 
 }
