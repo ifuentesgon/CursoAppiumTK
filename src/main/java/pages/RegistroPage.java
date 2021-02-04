@@ -33,14 +33,11 @@ public class RegistroPage {
     @AndroidFindBy(id = "com.rodrigo.registro:id/action_producto")
     private MobileElement btnCrearProducto;
 
-    @AndroidFindBy(id = "com.rodrigo.registro:id/fab_expand_menu_button")
-    private MobileElement btnCrearProducto;
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'PRODUCTOS')]")
+    private MobileElement btnTabProductos;
 
     @AndroidFindBy(id = "com.rodrigo.registro:id/nombre_cliente")
     private List<MobileElement> clientes;
-
-
-
 
 
     public void validarListaDesplegada(){
@@ -48,6 +45,14 @@ public class RegistroPage {
             addStep("Validar Vista registro Desplegada",true, Status.PASSED,false);
         }else{
             addStep("Validar Vista registro Desplegada",true, Status.FAILED,true);
+        }
+    }
+
+    public void validarListaProdutosDesplegada(){
+        if(esperarElemento(tituloVistaRegistro, 5)){
+            addStep("Se Vizualiza pantalla Productos",true, Status.PASSED,false);
+        }else{
+            addStep("Se Vizualiza pantalla Productos",true, Status.FAILED,true);
         }
     }
 
@@ -72,8 +77,12 @@ public class RegistroPage {
     }
 
     public void tapBtnMas(){
-
         btnMas.click();
+        if(esperarElemento(btnMas, 5)){
+            addStep("Se vizualiza Boton Crear Cliente y Producto",true, Status.PASSED,false);
+        }else{
+            addStep("Se vizualiza Boton Crear Cliente y Producto",true, Status.FAILED,true);
+        }
     }
 
     public void tapBtnCrearCliente(){
@@ -101,6 +110,10 @@ public class RegistroPage {
         if(!clienteEncontrado){
             addStep("Cliente NO Encontrado: "+nombreCliente, true, Status.FAILED, true);
         }
+    }
+
+    public void tapProductos() {
+        btnTabProductos.click();
     }
 
 }

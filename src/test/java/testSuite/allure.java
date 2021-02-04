@@ -9,6 +9,7 @@ import org.testng.asserts.SoftAssert;
 import reports.ReportAllure;
 import testsCases.CPA_BorrarCliente;
 import testsCases.CPA_CrearCliente;
+import testsCases.CPA_CrearProducto;
 
 import static driver.DriverContext.quitDriver;
 import static driver.DriverContext.setUp;
@@ -48,6 +49,12 @@ public class allure {
     @Test(priority = 2, description = "Caso Borrar Cliente")
     public void CPA_BorrarCliente(){
         CPA_BorrarCliente cpa = new CPA_BorrarCliente ();
+        cpa.flujoFront();
+    }
+
+    @Test(priority = 1, description = "Caso Crear Producto")
+    public void CPA_CrearProducto(){
+        CPA_CrearProducto cpa = new CPA_CrearProducto();
         cpa.flujoFront();
     }
 
