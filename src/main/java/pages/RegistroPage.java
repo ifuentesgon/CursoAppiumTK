@@ -30,8 +30,8 @@ public class RegistroPage {
     @AndroidFindBy(id = "com.rodrigo.registro:id/action_cliente")
     private MobileElement btnCrearCliente;
 
-  //@AndroidFindBy(id = "com.rodrigo.registro:id/action_producto")
-  // private MobileElement btnCrearProducto;
+    @AndroidFindBy(id = "com.rodrigo.registro:id/action_producto")
+    private MobileElement btnCrearProducto;
 
     @AndroidFindBy(id = "com.rodrigo.registro:id/fab_expand_menu_button")
     private MobileElement btnCrearProducto;
@@ -72,11 +72,18 @@ public class RegistroPage {
     }
 
     public void tapBtnMas(){
+
         btnMas.click();
     }
 
     public void tapBtnCrearCliente(){
+
         btnCrearCliente.click();
+    }
+
+    public void tapBtnCrearProducto(){
+
+        btnCrearProducto.click();
     }
 
     public void tapSeleccionarCliente(String nombreCliente){
@@ -88,14 +95,12 @@ public class RegistroPage {
                 addStep("Cliente Encontrado: "+nombreCliente, true, Status.PASSED, false);
                 MobileElement cliente = (MobileElement) DriverContext.getDriver().findElement(By.xpath("//*[contains(@text,'"+nombreCliente+"')]"));
                 cliente.click();
-
                 break;
             }
         }
         if(!clienteEncontrado){
             addStep("Cliente NO Encontrado: "+nombreCliente, true, Status.FAILED, true);
         }
-
     }
 
 }
