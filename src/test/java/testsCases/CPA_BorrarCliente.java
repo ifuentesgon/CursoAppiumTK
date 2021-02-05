@@ -12,29 +12,31 @@ public class CPA_BorrarCliente {
     DetalleClientePage detalle = new DetalleClientePage();
     Utils utils = new Utils();
 
-    //Parametro Nombre a eliminar
-    String nombre = "karen";
+    //Parametro Nombre Cliente a eliminar
+    String nombre = "Adriana";
 
     public void flujoFront(){
 
-        //Desplegar APP Correctamente
+        //Desplegar App -->	Se visualiza carrusel informativo
         carrusel.vizualizaCarrucelInformativo();
-        //Recorre carrusel
+        //Recorrer todoel carusel --> Se visualiza pantalla de 'Registro'
         carrusel.flujoCarrusel();
-        //Selecionamos un cliente
+        registro.validarListaDesplegada();
+        //Seleccionamos un cliente --> Se visualiza pantalla 'Detalle del Cliente'
         registro.tapSeleccionarCliente(nombre);
-        //Tap Eliminar Cliente
+        detalle.validarVistaDetalleCliente(nombre);
+        //Tap al botón 'Eliminar Cliente' --> Se visualiza popUp de confirmación
         utils.swipeAbajo();
         detalle.tapBtnEliminar();
-        //Ingresar palabra borrar y tap en boton OK
+        detalle.vizualizaPopUpEliminacion();
+        //Se ingresa la palabra 'BORRAR' y se da tap al botón 'ok'	--> Sevisualiza pantalla de 'Registro'
+        detalle.confirmarEliminacion();
+        registro.validarListaDesplegada();
 
-
-
-
+        //Validación: Validar que el cliente no se visualice en la pantalla de 'Registro', en el tab de 'Clientes'
+        registro.tapRegistroClientes();
+        registro.validaClienteEliminado(nombre);
 
     }
-
-
-
 
 }

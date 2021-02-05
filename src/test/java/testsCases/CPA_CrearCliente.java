@@ -10,7 +10,7 @@ public class CPA_CrearCliente {
     RegistroPage registro = new RegistroPage();
     CrearClientePage crearClientePage = new CrearClientePage();
 
-    String nombre = "karen";
+    String nombre = "Nico";
     String id = "12345";
     String direccion = "Calle no existe 124";
     String fono = "123456789";

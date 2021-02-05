@@ -11,8 +11,8 @@ public class CPA_CrearProducto {
     CrearProductoPage producto = new CrearProductoPage();
 
 
-    String nombreProducto = "NotebookPraah";
-    String montoProducto = "12345";
+    String nombreProducto = "NotebookPraaaah";
+    String montoProducto = "12345.00";
 
     public void flujoFront(){
         //Desplegar App --> Se viaualiza arrusel informativo
@@ -24,14 +24,23 @@ public class CPA_CrearProducto {
         registro.tapBtnMas();
         //Tap al botón 'Crear Producto' -->	Se visualiza pantalla de 'Crear Producto'
         registro.tapBtnCrearProducto();
-        producto.validarListaDesplegada();
+        producto.validarVistaCrearProducto();
         //Ingresar nombre y precio del producto y se da tap al botón 'Confirmar' -- > Se visualiza pantalla de 'Registro'
         producto.completarFormulario(nombreProducto, montoProducto);
         producto.tapConfirmar();
         registro.validarListaDesplegada();
         //Tap al botón Tab 'Productos' -- > Se visualiza pantalla de 'Productos'
-        registro.tapProductos();
+        registro.tapRegistroProductos();
         registro.validarListaProdutosDesplegada();
+
+        //Validación: Validar que el producto ingresado se encuentre en la lista de la pantalla 'Productos' con el nombre y el precio correcto.
+        registro.validarProducto(nombreProducto);
+        registro.validarPrecio(montoProducto);
+
+
+
+
+
 
     }
 

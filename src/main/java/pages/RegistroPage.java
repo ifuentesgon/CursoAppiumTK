@@ -33,26 +33,35 @@ public class RegistroPage {
     @AndroidFindBy(id = "com.rodrigo.registro:id/action_producto")
     private MobileElement btnCrearProducto;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'CLIENTES')]")
+    private MobileElement btnTabClientes;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'PRODUCTOS')]")
     private MobileElement btnTabProductos;
 
     @AndroidFindBy(id = "com.rodrigo.registro:id/nombre_cliente")
     private List<MobileElement> clientes;
 
+    @AndroidFindBy(xpath = "//*[@resource-id='com.rodrigo.registro:id/nombre_producto']")
+    private List<MobileElement> listaProductos;
+
+    @AndroidFindBy(xpath = "//*[@resource-id='com.rodrigo.registro:id/precio_producto']")
+    private List<MobileElement> listaPrecioProductos;
+
 
     public void validarListaDesplegada(){
         if(esperarElemento(tituloVistaRegistro, 5)){
-            addStep("Validar Vista registro Desplegada",true, Status.PASSED,false);
+            addStep("Se Vizualiza Vista Registro Desplegada",true, Status.PASSED,false);
         }else{
-            addStep("Validar Vista registro Desplegada",true, Status.FAILED,true);
+            addStep("Se Vizualiza Vista Registro Desplegada",true, Status.FAILED,true);
         }
     }
 
     public void validarListaProdutosDesplegada(){
         if(esperarElemento(tituloVistaRegistro, 5)){
-            addStep("Se Vizualiza pantalla Productos",true, Status.PASSED,false);
+            addStep("Se Vizualiza Pantalla Productos",true, Status.PASSED,false);
         }else{
-            addStep("Se Vizualiza pantalla Productos",true, Status.FAILED,true);
+            addStep("Se Vizualiza Pantalla Productos",true, Status.FAILED,true);
         }
     }
 
@@ -79,9 +88,9 @@ public class RegistroPage {
     public void tapBtnMas(){
         btnMas.click();
         if(esperarElemento(btnMas, 5)){
-            addStep("Se vizualiza Boton Crear Cliente y Producto",true, Status.PASSED,false);
+            addStep("Se Vizualiza Boton Crear Cliente y Crear Producto",true, Status.PASSED,false);
         }else{
-            addStep("Se vizualiza Boton Crear Cliente y Producto",true, Status.FAILED,true);
+            addStep("Se Vizualiza Boton Crear Cliente y Crear Producto",true, Status.FAILED,true);
         }
     }
 
@@ -101,9 +110,9 @@ public class RegistroPage {
             if(clientes.get(i).getText().equals(nombreCliente)){
                 clienteEncontrado = true;
 
-                addStep("Cliente Encontrado: "+nombreCliente, true, Status.PASSED, false);
                 MobileElement cliente = (MobileElement) DriverContext.getDriver().findElement(By.xpath("//*[contains(@text,'"+nombreCliente+"')]"));
                 cliente.click();
+           //     addStep("Cliente Encontrado: "+nombreCliente, true, Status.PASSED, false);
                 break;
             }
         }
@@ -112,7 +121,68 @@ public class RegistroPage {
         }
     }
 
-    public void tapProductos() {
+    public void validaClienteEliminado(String nombre){
+        boolean clienteEncontrado = false;
+        for (int i = 0; i<=clientes.size(); i++){
+            String nombreCliente = clientes.get(i).getText();
+            if (!nombreCliente.equals(nombre)){
+                clienteEncontrado = true;
+                break;
+            }
+        }
+        if (clienteEncontrado){
+            addStep("Valida Cliente: "+nombre+" Fue Eliminado", true, Status.PASSED, false);
+        }
+        else {
+            addStep("Valida Cliente: "+nombre+" no se eliminó correctamente", true, Status.FAILED, true);
+        }
+
+    }
+
+    public void validarProducto(String producto){
+        System.out.println("[RegistroProducto] Validar producto");
+        Boolean existeCliente = false;
+        for (int i=0; i<=listaProductos.size(); i++){
+            String productoActual = listaProductos.get(i).getText();
+            if (productoActual.equals(producto)){
+                existeCliente =true;
+                break;
+            }
+        }
+        if (existeCliente){
+            System.out.println("[Existen Productos registrados]");
+            addStep("Valida Producto: "+producto+" Encontrado", true, Status.PASSED,false);
+        }
+        else {
+            addStep("Valida Producto: "+producto+" NO encontrado", true, Status.FAILED,true);
+        }
+    }
+
+    public void validarPrecio(String montoProducto){
+        Boolean existePrecio = false;
+            for (int i = 0; i <= listaPrecioProductos.size(); i++) {
+                String precioActual = listaPrecioProductos.get(i).getText();
+                if (precioActual.equals(montoProducto)) {
+                    existePrecio = true;
+                    break;
+                }
+            }
+
+        if (existePrecio){
+            System.out.println("[RegistroPrecios] Validar precios");
+            addStep("Valida Precio: "+montoProducto+" Encontrado", true, Status.PASSED,false);
+        }
+        else {
+            addStep("Valida Precio: "+montoProducto+" NO Visualizado", true, Status.FAILED,true);
+        }
+    }
+
+
+    public void tapRegistroClientes() {
+        btnTabClientes.click();
+    }
+
+    public void tapRegistroProductos() {
         btnTabProductos.click();
     }
 

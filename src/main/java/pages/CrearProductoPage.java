@@ -7,12 +7,15 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.qameta.allure.model.Status;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 
 import static reports.ReportAllure.addStep;
 import static utils.Utils.esperarElemento;
 
 public class CrearProductoPage {
     private AppiumDriver driver;
+
+    private static SoftAssert softAssert= new SoftAssert();
 
     public CrearProductoPage() {
         this.driver = DriverContext.getDriver();
@@ -34,9 +37,9 @@ public class CrearProductoPage {
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'PRODUCTOS')]")
     private MobileElement btnTabProductos;
 
-
-    public void validarListaDesplegada() {
-        if (esperarElemento(tituloVistaCrearProducto, 5)) {
+    public void validarVistaCrearProducto() {
+        softAssert.assertAll();
+        if (esperarElemento(tituloVistaCrearProducto, 10)) {
             addStep("Validar Vista Crear Producto Desplegada", true, Status.PASSED, false);
         } else {
             addStep("Validar Vista Crear Producto Desplegada", true, Status.FAILED, true);
@@ -50,6 +53,7 @@ public class CrearProductoPage {
 
         inputPrecio.click();
         inputPrecio.setValue(precio);
+ //       inputPrecio.setValue( String.valueOf( precio) );
         this.driver.hideKeyboard();
 
     }
